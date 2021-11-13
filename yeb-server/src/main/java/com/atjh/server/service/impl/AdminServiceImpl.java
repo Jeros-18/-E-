@@ -1,8 +1,10 @@
 package com.atjh.server.service.impl;
 
 import com.atjh.server.config.security.component.JwtTokenUtil;
+import com.atjh.server.mapper.RoleMapper;
 import com.atjh.server.pojo.Admin;
 import com.atjh.server.mapper.AdminMapper;
+import com.atjh.server.pojo.Role;
 import com.atjh.server.pojo.a.RespBean;
 import com.atjh.server.service.IAdminService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -19,6 +21,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +49,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
 
     @Autowired
     private AdminMapper adminMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     /**
      * 登录之后返货token
@@ -91,5 +97,10 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     public Admin getAdminByUserName(String name) {
         return adminMapper.selectOne(new QueryWrapper<Admin>().eq("username",name).eq("enabled",true));
 
+    }
+
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
     }
 }

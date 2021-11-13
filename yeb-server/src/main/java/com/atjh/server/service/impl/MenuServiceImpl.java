@@ -1,9 +1,11 @@
 package com.atjh.server.service.impl;
 
 import com.atjh.server.mapper.AdminMapper;
+import com.atjh.server.mapper.RoleMapper;
 import com.atjh.server.pojo.Admin;
 import com.atjh.server.pojo.Menu;
 import com.atjh.server.mapper.MenuMapper;
+import com.atjh.server.pojo.Role;
 import com.atjh.server.service.IMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +52,15 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         }
         return menus;
     }
+
+    /**
+     * 根据角色获取菜单列表
+     * @return
+     */
+    @Override
+    public List<Menu> getMenusWithRole() {
+        return menuMapper.getMenusWithRole();
+    }
+
+
 }
