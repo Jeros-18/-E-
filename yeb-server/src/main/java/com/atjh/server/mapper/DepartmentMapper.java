@@ -2,6 +2,9 @@ package com.atjh.server.mapper;
 
 import com.atjh.server.pojo.Department;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.swagger.models.auth.In;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface DepartmentMapper extends BaseMapper<Department> {
 
+    /**
+     * 获取所有部门
+     * @return
+     */
+    List<Department> getAllDepartments(Integer id);
 }
